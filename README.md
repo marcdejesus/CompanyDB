@@ -47,16 +47,18 @@ mysql -u root -p company_db -e "SHOW TABLES;"
 
 ## Sample Queries
 
-This repository includes two SQL query files you can use to explore the database:
+This repository includes three SQL query files you can use to explore the database:
 
-1. [sample_queries.sql](sql/sample_queries.sql) - Contains advanced analytical queries demonstrating SQL capabilities.
+1. [sample_queries.sql](sql/sample_queries.sql) - Contains analytical queries demonstrating SQL capabilities.
 2. [common_queries.sql](sql/common_queries.sql) - Contains practical, everyday queries for common business needs.
+3. [advanced_queries.sql](sql/advanced_queries.sql) - Contains complex queries demonstrating advanced SQL techniques.
 
 You can run these queries directly in MySQL:
 
 ```bash
 mysql -u root -p company_db < sql/sample_queries.sql
 mysql -u root -p company_db < sql/common_queries.sql
+mysql -u root -p company_db < sql/advanced_queries.sql
 ```
 
 ## Database Structure
