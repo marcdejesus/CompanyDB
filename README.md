@@ -37,7 +37,7 @@ USE company_db;
 
 4. Run the setup script:
 ```bash
-mysql -u root -p company_db < setup.sql
+mysql -u root -p company_db < sql/setup.sql
 ```
 
 5. Verify installation:
@@ -47,7 +47,17 @@ mysql -u root -p company_db -e "SHOW TABLES;"
 
 ## Sample Queries
 
-See [sample_queries.sql](sample_queries.sql) for example queries you can run against this database.
+This repository includes two SQL query files you can use to explore the database:
+
+1. [sample_queries.sql](sql/sample_queries.sql) - Contains advanced analytical queries demonstrating SQL capabilities.
+2. [common_queries.sql](sql/common_queries.sql) - Contains practical, everyday queries for common business needs.
+
+You can run these queries directly in MySQL:
+
+```bash
+mysql -u root -p company_db < sql/sample_queries.sql
+mysql -u root -p company_db < sql/common_queries.sql
+```
 
 ## Database Structure
 
