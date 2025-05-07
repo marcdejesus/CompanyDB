@@ -1,0 +1,66 @@
+-- explain how to map a relationship in ER diagram along with its attributes
+
+What is the cardinality? (1:1, 1:N, M:N, unary)
+
+Where does the foreign key go? (many side for 1:N; separate table for M:N)
+
+Where do attributes of the relationship live?
+
+    In the new join‐table (M:N)
+
+    In the “many‑side” table (1:N)
+
+    In whichever table you chose for a 1:1
+
+Declare keys and FKs so referential integrity is enforced.
+???????????????????????????????????????????????????????????????????????????????????
+
+-- Use plain CREATE when you want to ensure you never accidentally overwrite an existing object.
+
+-- Use CREATE OR REPLACE during development or automated deployments to recompile—overwrite—definitions in place without manual drops.
+
+????????????????????????????????????????????????????????????????????????????????
+-- write an sql query to list the name of all triggers, their types, and table name of those table currently logged in user
+
+SELECT 
+  trigger_name,
+  trigger_type,        -- e.g. ’BEFORE EACH ROW’, ’AFTER STATEMENT’, etc.
+  table_name
+FROM user_triggers;
+
+
+
+
+-- write an sql query to generate a set of sql statements to delete the contents in all tables with currently logged in user
+
+select 'delete from' || table_name || ';' as delete from uses_table;
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+CREATE TABLE Shipped_Items (
+  item_number        VARCHAR2(20)    PRIMARY KEY,
+  weight             NUMBER(8,2)     NOT NULL,
+  dimension          VARCHAR2(50),
+  insured_amount     NUMBER(10,2),
+  destination        VARCHAR2(100),
+  final_delivery_dt  DATE,
+  retail_center_id   VARCHAR2(10)    -- FK back to Retail_Center
+    CONSTRAINT fk_ship_recv
+      REFERENCES Retail_Center(center_id)
+);
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+-- ctl file example:
+
+
+
+Extra C question regarding creating a column in between a table:
+Overall, recreate the following: table, objects, constraints, triggers, functions
+
+
+1. Save employee
+2. check employee constraints
+3. export into data file
+4. retrieve command to recreate newest table
+5. spool as sql with new column and where you want it
+6. run

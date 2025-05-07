@@ -1,0 +1,66 @@
+-- full name of all department managers, with department name
+
+SELECT 
+    e.fname, 
+    e.minit, 
+    e.lname, 
+    d.dname
+FROM Department d
+JOIN Employee   e ON d.mgr_ssn = e.ssn;
+
+
+-- employees directly supervised by James B Borg
+
+SELECT 
+    e2.fname, 
+    e2.minit, 
+    e2.lname
+FROM Employee e1
+JOIN Employee e2 
+  ON e2.super_ssn = e1.ssn
+WHERE e1.fname = 'James'
+  AND e1.minit = 'B'
+  AND e1.lname = 'Borg';
+
+-- Employees in Software department paid above that dept’s average
+
+SELECT 
+    e.fname, 
+    e.minit, 
+    e.lname
+FROM Employee  e
+JOIN Department d 
+  ON e.dno = d.dnumber
+WHERE d.dname = 'Software'
+  AND e.salary > (
+        SELECT AVG(salary)
+        FROM Employee
+        WHERE dno = d.dnumber
+  );
+
+-- Number of employees in each department (with department name)
+
+SELECT 
+    d.dname,
+    COUNT(*) AS num_employees
+FROM Department d
+JOIN Employee  e 
+  ON e.dno = d.dnumber
+GROUP BY d.dname;
+
+
+-- Average number of projects per employee
+
+
+SELECT
+    AVG(proj_count) AS avg_projects_per_employee
+FROM (
+    SELECT 
+        e.ssn,
+        COUNT(w.pno) AS proj_count
+    FROM Employee   e
+    LEFT JOIN Works_On w 
+      ON e.ssn = w.essn
+    GROUP BY e.ssn
+) sub;
+
