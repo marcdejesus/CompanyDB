@@ -1,4 +1,4 @@
-# CompanyDB
+# CompanyDB - CMICH Database Class Work
 
 A simple MySQL database for managing employees, departments, and projects for a company.
 
